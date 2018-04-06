@@ -1,0 +1,17 @@
+body {
+    background-color: #576366;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px; 
+}
+h1 {
+    color: #5fcf80;
+    text-align: center;
+}
+.userOne {
+ border:  #c25975 5px solid;
+ border-radius: 100%;
+}
+.userTwo {
+    border: #c25975 5px solid;
+    border-radius: 100%;
+}
