@@ -10,11 +10,42 @@
 </head>
 <body>
     <h1>Treehouse Cage Match</h1>
+        
+        <!-- INPUT BOXES & GO BUTTONS -->
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="player-one" placeholder="Search for treehouse user...">
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="player-two" placeholder="Search for treehouse user...">
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <div class="input-group-btn">
+              <button type="button" class="btn" type="button" id="go">Go!</button>
+            </div>
+        
+        <div id="display-one"></div>
+        <div id="display-two"></div>
+        
+        <!-- START MATCH BUTTON -->
+        
+        <div class="btn" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" id="start-match">RUMBLE!</button>
+        </div>
     
+        <!-- WINNER SECTION -->
+        <div id="winner"></div>
+        <div id="achievements"></div>
+
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script> 
-    <script src="..javascripts/main.js"></script> 
+    <script src="../javascripts/main.js"></script> 
 </body>
 </html>
