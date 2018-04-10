@@ -1,13 +1,13 @@
-console.log('oh hey, hi');
+// console.log('oh hey, hi');
+// hard code user profiles
+// need an additional XHR Request to get the other competitor's data. call second request when the first request comes back successfully
 
 const printToDom = (domString, divId) => {
     document.getElementById('divId').innerHTML = domString;
 };
 
-
-const displayPlayerOne = (playerOne) => {
+const buildPlayerOne = (playerOne) => {
     let domString = "";
-    domString += `<div id="display-one">`;
     domString +=    `<div class="row">`;
     domString +=    `<div class="col-xs-6 col-md-3">`;
     domString +=    `<a href="${name}" class="thumbnail">`;
@@ -18,56 +18,38 @@ const displayPlayerOne = (playerOne) => {
     printToDom(domString, "display-one");
 };
 
-const buildPlayerOne = () => {
+const buildPlayerTwo = (playerTwo) => {
     let domString = "";
-    domString += `<div id="build-one">`;
-    domString +=    `<div class="col-lg-6">`;
-    domString +=    `<div class="input-group">`;
-    domString +=    `<input type="text" class="form-control" placeholder="Search for...">`;
-    domString +=    `<span class="input-group-btn">`;
-    domString +=    `<button class="btn btn-default" type="button">Go!</button>`;
-    domString +=    `</span>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
-    printToDom(domString, "build-one");
-    displayPlayerOne();
-};
-// can i make this a generic function that can build both cards?
- 
-const displayPlayerTwo = (playerTwo) => {
-    let domString = "";
-    domString += `<div id="user-two">`;
     domString +=    `<div class="row">`;
     domString +=    `<div class="col-xs-6 col-md-3">`;
-    domString +=    `<a href="#" class="thumbnail">`;
-    domString +=    `<img src="..." alt="...">`;
+    domString +=    `<a href="${name}" class="thumbnail">`;
+    domString +=    `<img src="${gravatar_url}" alt="profile-pic">`;
     domString +=    `</a>`;
     domString +=    `</div>`;
     domString += `</div>`;
-    printToDom(domString, "playerTwo");
+    printToDom(domString, "display-two");
 };
-// can i make this a generic function that can build both cards?
-const buildPlayerTwo = () => {
-    let domString = "";
-    domString += `<div id="build-two">`;
-    domString +=    `<div class="col-lg-6">`;
-    domString +=    `<div class="input-group">`;
-    domString +=    `<input type="text" class="form-control" placeholder="Search for...">`;
-    domString +=    `<span class="input-group-btn">`;
-    domString +=    `<button class="btn btn-default" type="button">Go!</button>`;
-    domString +=    `</span>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
-    printToDom(domString, "build-two");
-    displayPlayerTwo();
-};
-// when the user clicks the 'go' button, take the value and search treehouse
-const selectCompetitor = e => {
-    selectedCompetitor = e.target.dataset.##;
-    document.getElementById('go-button');
-}
-// Add Event listeners
 
+// when the user clicks the 'go' button, take the value and search treehouse
+// 
+
+  
+// const contestantOne = document.getElementById('player-one');
+// const contestantTwo = document.getElementById('player-two');
+// Add Event listeners ..inside click event
+// const userInputOne = document.getElementById('button').value; 
+// const userInputTwo = document.getElementById('button').value;
+const addEventListeners = () => {
+    const goButtons = document.getElementsByClassName('btn');
+    for (let i = 0; i < goButtons.length; i++) {
+        goButtons[i].addEventListener('click', startApplication); 
+    }
+};
+const playerOne = (input) => {
+    var input = document.getElementById("input").value;
+    console.log(input);
+    var words = input.toLowerCase().split(' ');
+}; 
 
 function executeThisCodeIfXHRFails() {
     console.log("Oops! Something went wrong");
@@ -76,9 +58,9 @@ function executeThisCodeIfXHRFails() {
 function executeThisCodeAfterFileLoads() {
     const data = JSON.parse(this.responseText);
     // replace .userOne with the appropriate variable 
-    buildDomString(data.userOne);
+    buildPlayerOne();
 }
-
+  
 const startApplication = () => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", executeThisCodeAfterFileLoads);
@@ -86,4 +68,3 @@ const startApplication = () => {
     myRequest.open("GET", "https://teamtreehouse.com/nathanpabst.json");
 };
 
-startApplication();
