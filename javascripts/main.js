@@ -6,7 +6,7 @@ const printToDom = (domString, divId) => {
 
 const buildPlayerOne = (data) => {
     let domString = "";
-    domString +=  `<div class="userOne">`;
+    domString +=  `<div class="competitors">`;
     domString +=    `<h2>${data.profile_name}</h2>`;
     domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
     domString +=    `<h3>${data.points.total}`;
@@ -16,21 +16,51 @@ const buildPlayerOne = (data) => {
 
 const buildPlayerTwo = (data) => {
     let domString = "";
-    domString +=  `<div class="userTwo">`;
+    domString +=  `<div class="competitors">`;
     domString +=    `<h2>${data.profile_name}</h2>`;
     domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
     domString +=    `<h3>${data.points.total}`;
     domString +=  `</div>`;
     printToDom(domString, "display-two");
 };
-// const evaluatePlayers = () => {
 
-// };
+const buildAwards = () => {
+    let domString = "";
+    domString += `<div class="panel panel-default">`;
+    domString +=   `<div class="panel-heading">`;
+    domString +=   `<h3 class="panel-title">Achievements</h3>`;
+    domString +=   `</div>`;
+    domString +=   `<div class="awards-section">`;
+    domString +=   `<..${data.icon_url}>`;
+    domString +=   `</div>`;
+}
 
-// const addRumbleListener = () => {
-//     const rumbleButton = document.getElementById('start-match');
-//     rumbleButton.addEventListener('click', evaluatePlayers);
-// };
+const getAwards = () => {
+
+};
+
+const evaluatePlayers = (e) => {
+    const competitors = document.getElementsByClassName('competitors');
+    let totals = [];
+    for (let i = 0; i < totals.length; i++) {
+        let total = competitors[i].children[2].innerHTML;
+        scores.push(total * 1);
+    }
+    let winner;
+    if (totals[0] > totals[1]) {
+        winner = competitors[0].children[0].innerHTML;
+    } else {
+        winner = competitors[1].children[0].innerHTML;
+    }
+    let domString = `<h4>${winner} wins!</h4>`;
+    printToDom(domString, 'winner');
+    getAwards();
+};
+
+const addRumbleListener = () => {
+    const rumbleButton = document.getElementById('start-match');
+    rumbleButton.addEventListener('click', evaluatePlayers);
+};
 
 // WHEN THE USER CLICKS THE 'GO' BUTTON, TAKE THE VALUES AND SEARCH TREEHOUSE 
 const addEventListeners = () => {
@@ -62,10 +92,8 @@ const readyPlayerOne = (successFunction) => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", successFunction);
     myRequest.addEventListener("error", executeThisCodeIfXHRFails);
-    myRequest.open("GET", `"https://teamtreehouse.com/${playerOne}.json"`);
+    myRequest.open("GET", `https://teamtreehouse.com/${playerOne}.json`);
     myRequest.send();
-    console.log(playerOne);
-
 }; 
 
 const readyPlayerTwo = (successFunction) => {
@@ -79,7 +107,7 @@ const readyPlayerTwo = (successFunction) => {
  
 const startApplication = () => {
     addEventListeners();
-    // addRumbleListener();
+    addRumbleListener();
 };
 
 startApplication();
