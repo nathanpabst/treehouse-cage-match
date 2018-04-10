@@ -62,7 +62,10 @@ const readyPlayerOne = (successFunction) => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", successFunction);
     myRequest.addEventListener("error", executeThisCodeIfXHRFails);
-    myRequest.open("GET", "https://teamtreehouse.com/" + playerOne + ".json");
+    myRequest.open("GET", `"https://teamtreehouse.com/${playerOne}.json"`);
+    myRequest.send();
+    console.log(playerOne);
+
 }; 
 
 const readyPlayerTwo = (successFunction) => {
@@ -70,7 +73,8 @@ const readyPlayerTwo = (successFunction) => {
     let myRequest = new XMLHttpRequest();
     myRequest.addEventListener("load", successFunction);
     myRequest.addEventListener("error", executeThisCodeIfXHRFails);
-    myRequest.open("GET", "https://teamtreehouse.com/" + playerTwo + ".json");
+    myRequest.open("GET", `https://teamtreehouse.com/${playerTwo}.json`);
+    myRequest.send();
 }; 
  
 const startApplication = () => {
