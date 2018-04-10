@@ -1,7 +1,7 @@
 // console.log('oh hey, hi');
 
 const printToDom = (domString, divId) => {
-    document.getElementById('divId').innerHTML = domString;
+    document.getElementById(divId).innerHTML = domString;
 };
 
 const buildPlayerOne = (data) => {
@@ -24,20 +24,21 @@ const buildPlayerTwo = (data) => {
     printToDom(domString, "display-two");
 };
 
-const buildAwards = () => {
-    let domString = "";
-    domString += `<div class="panel panel-default">`;
-    domString +=   `<div class="panel-heading">`;
-    domString +=   `<h3 class="panel-title">Achievements</h3>`;
-    domString +=   `</div>`;
-    domString +=   `<div class="awards-section">`;
-    domString +=   `<..${data.icon_url}>`;
-    domString +=   `</div>`;
-}
+// const buildAwards = () => {
+//     let domString = "";
+//     domString += `<div class="panel panel-default">`;
+//     domString +=   `<div class="panel-heading">`;
+//     domString +=   `<h3 class="panel-title">Achievements</h3>`;
+//     domString +=   `</div>`;
+//     domString +=   `<div class="awards-section">`;
+//     domString +=   `<..${data.icon_url}>`;
+//     domString +=   `</div>`;
+//     printToDom(domString, 'achievements');
+// };
 
-const getAwards = () => {
+// const getAwards = () => {
 
-};
+// };
 
 const evaluatePlayers = (e) => {
     const competitors = document.getElementsByClassName('competitors');
@@ -54,7 +55,7 @@ const evaluatePlayers = (e) => {
     }
     let domString = `<h4>${winner} wins!</h4>`;
     printToDom(domString, 'winner');
-    getAwards();
+    // getAwards();
 };
 
 const addRumbleListener = () => {

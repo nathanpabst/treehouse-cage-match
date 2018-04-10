@@ -7,10 +7,22 @@ h1 {
     color: #5fcf80;
     text-align: center;
 }
+
+.input-group {
+    margin: 0 auto;
+}
+
+.btn {
+    margin: 0 auto;
+}
+#display-one #display-two {
+    display: inline;
+}
 .userOne {
  border:  #c25975 5px solid;
  border-radius: 100%;
 }
+
 .userTwo {
     border: #c25975 5px solid;
     border-radius: 100%;
