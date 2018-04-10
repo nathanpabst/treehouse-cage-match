@@ -1,70 +1,82 @@
 // console.log('oh hey, hi');
-// hard code user profiles
-// need an additional XHR Request to get the other competitor's data. call second request when the first request comes back successfully
 
 const printToDom = (domString, divId) => {
     document.getElementById('divId').innerHTML = domString;
 };
 
-const buildPlayerOne = (playerOne) => {
+const buildPlayerOne = (data) => {
     let domString = "";
-    domString +=    `<div class="row">`;
-    domString +=    `<div class="col-xs-6 col-md-3">`;
-    domString +=    `<a href="${name}" class="thumbnail">`;
-    domString +=    `<img src="${gravatar_url}" alt="profile-pic">`;
-    domString +=    `</a>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
+    domString +=  `<div class="userOne">`;
+    domString +=    `<h2>${data.profile_name}</h2>`;
+    domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>${data.points.total}`;
+    domString +=  `</div>`;
     printToDom(domString, "display-one");
 };
 
-const buildPlayerTwo = (playerTwo) => {
+const buildPlayerTwo = (data) => {
     let domString = "";
-    domString +=    `<div class="row">`;
-    domString +=    `<div class="col-xs-6 col-md-3">`;
-    domString +=    `<a href="${name}" class="thumbnail">`;
-    domString +=    `<img src="${gravatar_url}" alt="profile-pic">`;
-    domString +=    `</a>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
+    domString +=  `<div class="userTwo">`;
+    domString +=    `<h2>${data.profile_name}</h2>`;
+    domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>${data.points.total}`;
+    domString +=  `</div>`;
     printToDom(domString, "display-two");
 };
+// const evaluatePlayers = () => {
 
-// when the user clicks the 'go' button, take the value and search treehouse
-// 
+// };
 
-  
-// const contestantOne = document.getElementById('player-one');
-// const contestantTwo = document.getElementById('player-two');
-// Add Event listeners ..inside click event
-// const userInputOne = document.getElementById('button').value; 
-// const userInputTwo = document.getElementById('button').value;
+// const addRumbleListener = () => {
+//     const rumbleButton = document.getElementById('start-match');
+//     rumbleButton.addEventListener('click', evaluatePlayers);
+// };
+
+// WHEN THE USER CLICKS THE 'GO' BUTTON, TAKE THE VALUES AND SEARCH TREEHOUSE 
 const addEventListeners = () => {
-    const goButtons = document.getElementsByClassName('btn');
-    for (let i = 0; i < goButtons.length; i++) {
-        goButtons[i].addEventListener('click', startApplication); 
-    }
+    const goButton = document.getElementById('go');
+    goButton.addEventListener('click', loadPlayers); 
 };
-const playerOne = (input) => {
-    var input = document.getElementById("input").value;
-    console.log(input);
-    var words = input.toLowerCase().split(' ');
-}; 
 
 function executeThisCodeIfXHRFails() {
     console.log("Oops! Something went wrong");
 }
 
-function executeThisCodeAfterFileLoads() {
-    const data = JSON.parse(this.responseText);
-    // replace .userOne with the appropriate variable 
-    buildPlayerOne();
+function executeOnLoad2() {
+    const loadPlayerTwo = JSON.parse(this.responseText);
+    buildPlayerTwo(loadPlayerTwo);
 }
-  
-const startApplication = () => {
+
+function executeOnLoad() {
+    const loadPlayerOne = JSON.parse(this.responseText);
+    buildPlayerOne(loadPlayerOne);
+}
+
+const loadPlayers = () => {
+    readyPlayerOne(executeOnLoad);
+    readyPlayerTwo(executeOnLoad2);
+}
+
+const readyPlayerOne = (successFunction) => {
+    let playerOne = document.getElementById('player-one').value;
     let myRequest = new XMLHttpRequest();
-    myRequest.addEventListener("load", executeThisCodeAfterFileLoads);
+    myRequest.addEventListener("load", successFunction);
     myRequest.addEventListener("error", executeThisCodeIfXHRFails);
-    myRequest.open("GET", "https://teamtreehouse.com/nathanpabst.json");
+    myRequest.open("GET", "https://teamtreehouse.com/" + playerOne + ".json");
+}; 
+
+const readyPlayerTwo = (successFunction) => {
+    let playerTwo = document.getElementById('player-two').value;
+    let myRequest = new XMLHttpRequest();
+    myRequest.addEventListener("load", successFunction);
+    myRequest.addEventListener("error", executeThisCodeIfXHRFails);
+    myRequest.open("GET", "https://teamtreehouse.com/" + playerTwo + ".json");
+}; 
+ 
+const startApplication = () => {
+    addEventListeners();
+    // addRumbleListener();
 };
+
+startApplication();
 
