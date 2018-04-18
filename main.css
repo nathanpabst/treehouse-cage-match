@@ -27,3 +27,11 @@ h1 {
     border: #c25975 5px solid;
     border-radius: 100%;
 }
+
+.avatar {
+    width: 90%;
+    height: 90%;
+}
+.panel {
+    background-color: #5fcf80;
+}
