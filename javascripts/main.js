@@ -6,20 +6,32 @@ const printToDom = (domString, divId) => {
 
 const buildPlayerOne = (data) => {
     let domString = "";
+    domString += `<div class="col-sm-6">`;
+    domString += `<div class="panel">`;
+    domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2>${data.profile_name}</h2>`;
-    domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>${data.points.total}`;
+    domString +=    `<h2 class="panel-title">${data.profile_name}</h2>`;
+    domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>Total Points: ${data.points.total}</h3>`;
+    domString +=  `</div>`;
+    domString +=  `</div>`;
+    domString +=  `</div>`;
     domString +=  `</div>`;
     printToDom(domString, "display-one");
 };
 
 const buildPlayerTwo = (data) => {
     let domString = "";
+    domString += `<div class="col-sm-6">`;
+    domString += `<div class="panel">`;
+    domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2>${data.profile_name}</h2>`;
-    domString +=    `<img src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>${data.points.total}`;
+    domString +=    `<h2 class="panel-title">${data.profile_name}</h2>`;
+    domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>Total Points: ${data.points.total}</h3>`;
+    domString +=  `</div>`;
+    domString +=  `</div>`;
+    domString +=  `</div>`;
     domString +=  `</div>`;
     printToDom(domString, "display-two");
 };
@@ -40,6 +52,7 @@ const buildPlayerTwo = (data) => {
 
 // };
 
+// evaluatePlayers is not working properly
 const evaluatePlayers = (e) => {
     const competitors = document.getElementsByClassName('competitors');
     let totals = [];
@@ -112,4 +125,3 @@ const startApplication = () => {
 };
 
 startApplication();
-
