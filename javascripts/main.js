@@ -36,21 +36,18 @@ const buildPlayerTwo = (data) => {
     printToDom(domString, "display-two");
 };
 
-// const buildAwards = () => {
-//     let domString = "";
-//     domString += `<div class="panel panel-default">`;
-//     domString +=   `<div class="panel-heading">`;
-//     domString +=   `<h3 class="panel-title">Achievements</h3>`;
-//     domString +=   `</div>`;
-//     domString +=   `<div class="awards-section">`;
-//     domString +=   `<..${data.icon_url}>`;
-//     domString +=   `</div>`;
-//     printToDom(domString, 'achievements');
-// };
-
-// const getAwards = () => {
-
-// };
+// DISPLAY THE WINNERS AWARD ICONS
+const buildAwards = () => {
+    let domString = "";
+    domString += `<div class="panel panel-default">`;
+    domString +=   `<div class="panel-heading">`;
+    domString +=   `<h3 class="panel-title">Achievements</h3>`;
+    domString +=   `</div>`;
+    domString +=   `<div class="awards-section">`;
+    domString +=   `<img src="${data.icon_url}">`;
+    domString +=   `</div>`;
+    printToDom(domString, 'achievements');
+};
 
 // EVALUATE PLAYER SCORES AND DECLARE WINNER
 const evaluatePlayers = (e) => {
@@ -65,7 +62,8 @@ const evaluatePlayers = (e) => {
     }
     let domString = `<h4>${winner} wins!</h4>`;
     printToDom(domString, 'winner');
-    // // getAwards();
+    console.log(winner);
+    buildAwards();
 };
 
 const addRumbleListener = () => {
