@@ -6,13 +6,13 @@ const printToDom = (domString, divId) => {
 
 const buildPlayerOne = (data) => {
     let domString = "";
-    domString += `<div class="col-sm-6">`;
+    domString += `<div id="comp-one" class="col-sm-6">`;
     domString += `<div class="panel">`;
     domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2 class="panel-title">${data.profile_name}</h2>`;
+    domString +=    `<h2 id="comp-one-name" class="panel-title">${data.profile_name}</h2>`;
     domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: ${data.points.total}</h3>`;
+    domString +=    `<h3>Total Points: <span id="comp-one-points">${data.points.total}</span></h3>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
@@ -26,9 +26,9 @@ const buildPlayerTwo = (data) => {
     domString += `<div class="panel">`;
     domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2 class="panel-title">${data.profile_name}</h2>`;
+    domString +=    `<h2 id="comp-two-name"class="panel-title">${data.profile_name}</h2>`;
     domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: ${data.points.total}</h3>`;
+    domString +=    `<h3>Total Points: <span id="comp-two-points">${data.points.total}</span></h3>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
@@ -52,23 +52,20 @@ const buildPlayerTwo = (data) => {
 
 // };
 
-// evaluatePlayers is not working properly
+// EVALUATE PLAYER SCORES AND DECLARE WINNER
 const evaluatePlayers = (e) => {
-    const competitors = document.getElementsByClassName('competitors');
-    let totals = [];
-    for (let i = 0; i < totals.length; i++) {
-        let total = competitors[i].children[2].innerHTML;
-        scores.push(total * 1);
-    }
-    let winner;
-    if (totals[0] > totals[1]) {
-        winner = competitors[0].children[0].innerHTML;
+    let comp1Points = document.getElementById('comp-one-points').innerHTML;
+    let comp1Parsed = parseInt(comp1Points);
+    let comp2Points = document.getElementById('comp-two-points').innerHTML;
+    let comp2Parsed = parseInt(comp2Points);
+    if (comp1Parsed > comp2Parsed) {
+        winner = document.getElementById('comp-one-name').innerHTML;
     } else {
-        winner = competitors[1].children[0].innerHTML;
+        winner = document.getElementById('comp-two-name').innerHTML;
     }
     let domString = `<h4>${winner} wins!</h4>`;
     printToDom(domString, 'winner');
-    // getAwards();
+    // // getAwards();
 };
 
 const addRumbleListener = () => {
