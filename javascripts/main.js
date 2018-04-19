@@ -52,19 +52,16 @@ const buildPlayerTwo = (data) => {
 
 // };
 
-// evaluatePlayers is not working properly
+// EVALUATE PLAYER SCORES AND DECLARE WINNER
 const evaluatePlayers = (e) => {
     let comp1Points = document.getElementById('comp-one-points').innerHTML;
-    // find a way to convert string to number
-    console.log('comp1Points', typeof comp1Points);
+    let comp1Parsed = parseInt(comp1Points);
     let comp2Points = document.getElementById('comp-two-points').innerHTML;
-    console.log('comp2Points', comp2Points);
-    if (comp1Points > comp2Points) {
+    let comp2Parsed = parseInt(comp2Points);
+    if (comp1Parsed > comp2Parsed) {
         winner = document.getElementById('comp-one-name').innerHTML;
-        console.log('if', comp1Points > comp2Points)
     } else {
         winner = document.getElementById('comp-two-name').innerHTML;
-        console.log('else', comp1Points > comp2Points);
     }
     let domString = `<h4>${winner} wins!</h4>`;
     printToDom(domString, 'winner');
