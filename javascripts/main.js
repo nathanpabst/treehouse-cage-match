@@ -37,16 +37,22 @@ const buildPlayerTwo = (data) => {
 };
 
 // DISPLAY THE WINNERS AWARD ICONS
-const buildAwards = () => {
-    let domString = "";
-    domString += `<div class="panel panel-default">`;
-    domString +=   `<div class="panel-heading">`;
-    domString +=   `<h3 class="panel-title">Achievements</h3>`;
-    domString +=   `</div>`;
-    domString +=   `<div class="awards-section">`;
-    domString +=   `<img src="${data.icon_url}">`;
-    domString +=   `</div>`;
-    printToDom(domString, 'achievements');
+const buildAchievementsDomString = (winner) => {
+    let winnerName = `<h2>${winner} wins!</h4>`;
+    printToDom(winnerName, 'winner');
+    let achievements = '';
+    for (let i = 0; i < achievements.length; i++) { 
+    console.log(achievements);
+    achievements += `<div class="panel panel-default">`;
+    achievements +=   `<div class="panel-heading">`;
+    achievements +=   `<h3 class="panel-title">Achievements</h3>`;
+    achievements +=   `</div>`;
+    achievements +=   `<div class="awards-section">`;
+    achievements +=   `<h4 class="award-name">${winner.achievements[i].name}"</h4>`;
+    achievements +=   `<img class="award-icon" src="${winner.achievements[i].icon_url}">`;
+    achievements +=   `</div>`;
+    printToDom(achievements, 'achievements');
+    };
 };
 
 // EVALUATE PLAYER SCORES AND DECLARE WINNER
@@ -60,10 +66,7 @@ const evaluatePlayers = (e) => {
     } else {
         winner = document.getElementById('comp-two-name').innerHTML;
     }
-    let domString = `<h4>${winner} wins!</h4>`;
-    printToDom(domString, 'winner');
-    console.log(winner);
-    buildAwards();
+    buildAchievementsDomString(winner);
 };
 
 const addRumbleListener = () => {
