@@ -28,6 +28,15 @@ h1 {
     border: #c25975 5px solid;
     border-radius: 100%;
 }
+#input {
+    margin: auto;
+}
+#next {
+    margin: auto; 
+}
+#rumble {
+    margin: auto;
+}
 
 .avatar {
     width: 90%;
