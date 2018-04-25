@@ -1,34 +1,36 @@
-// console.log('oh hey, hi');
+const playerData = [];
 
 const printToDom = (domString, divId) => {
     document.getElementById(divId).innerHTML = domString;
 };
 
-const buildPlayerOne = (data) => {
-    let domString = "";
+const buildPlayerOne = (playerData) => {
+    if (playerData[1]) {
+        let domString = "";
     domString += `<div id="comp-one" class="col-sm-6">`;
     domString += `<div class="panel">`;
     domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2 id="comp-one-name" class="panel-title">${data.profile_name}</h2>`;
-    domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: <span id="comp-one-points">${data.points.total}</span></h3>`;
+    domString +=    `<h2 id="comp-one-name" class="panel-title">${playerData[1].profile_name}</h2>`;
+    domString +=    `<img class="avatar" src="${playerData[1].gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>Total Points: <span id="comp-one-points">${playerData[1]['points'].total}</span></h3>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     printToDom(domString, "display-one");
+    }
 };
 
-const buildPlayerTwo = (data) => {
+const buildPlayerTwo = (playerData) => {
     let domString = "";
     domString += `<div class="col-sm-6">`;
     domString += `<div class="panel">`;
     domString +=  `<div class="panel-heading">`;
     domString +=  `<div class="competitors">`;
-    domString +=    `<h2 id="comp-two-name"class="panel-title">${data.profile_name}</h2>`;
-    domString +=    `<img class="avatar" src="${data.gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: <span id="comp-two-points">${data.points.total}</span></h3>`;
+    domString +=    `<h2 id="comp-two-name"class="panel-title">${playerData[0].profile_name}</h2>`;
+    domString +=    `<img class="avatar" src="${playerData[0].gravatar_url}" alt="profile-pic">`;
+    domString +=    `<h3>Total Points: <span id="comp-two-points">${playerData[0]['points'].total}</span></h3>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
     domString +=  `</div>`;
@@ -36,36 +38,38 @@ const buildPlayerTwo = (data) => {
     printToDom(domString, "display-two");
 };
 
-// const buildAwards = () => {
-//     let domString = "";
-//     domString += `<div class="panel panel-default">`;
-//     domString +=   `<div class="panel-heading">`;
-//     domString +=   `<h3 class="panel-title">Achievements</h3>`;
-//     domString +=   `</div>`;
-//     domString +=   `<div class="awards-section">`;
-//     domString +=   `<..${data.icon_url}>`;
-//     domString +=   `</div>`;
-//     printToDom(domString, 'achievements');
-// };
-
-// const getAwards = () => {
-
-// };
+// DISPLAY THE WINNERS AWARD ICONS
+const buildAchievementsDomString = (winner) => {
+    let winnerName = `<h2>${winner.name} wins!</h4>`;
+    printToDom(winnerName, 'winner');
+    let achievements = '';
+    for (let i = 0; i < winner.badges.length; i++) { 
+        achievements += `<div class="panel panel-default">`;
+        achievements +=   `<div class="panel-heading">`;
+        achievements +=   `<h3 class="panel-title">Achievements</h3>`;
+        achievements +=   `</div>`;
+        achievements +=   `<div class="awards-section">`;
+        achievements +=   `<h4 class="award-name">${winner.badges[i].name}"</h4>`;
+        achievements +=   `<img class="award-icon" src="${winner.badges[i].icon_url}">`;
+        achievements +=   `</div>`;
+    };
+    printToDom(achievements, 'achievements');
+};
 
 // EVALUATE PLAYER SCORES AND DECLARE WINNER
-const evaluatePlayers = (e) => {
+const evaluatePlayers = (playerData) => {
     let comp1Points = document.getElementById('comp-one-points').innerHTML;
     let comp1Parsed = parseInt(comp1Points);
     let comp2Points = document.getElementById('comp-two-points').innerHTML;
     let comp2Parsed = parseInt(comp2Points);
+    let winner;
     if (comp1Parsed > comp2Parsed) {
-        winner = document.getElementById('comp-one-name').innerHTML;
+       winner = playerData[1];
+       console.log('winner', winner);
     } else {
-        winner = document.getElementById('comp-two-name').innerHTML;
+        winner = playerData[0];
     }
-    let domString = `<h4>${winner} wins!</h4>`;
-    printToDom(domString, 'winner');
-    // // getAwards();
+    buildAchievementsDomString(winner);
 };
 
 const addRumbleListener = () => {
@@ -83,19 +87,19 @@ function executeThisCodeIfXHRFails() {
     console.log("Oops! Something went wrong");
 }
 
-function executeOnLoad2() {
-    const loadPlayerTwo = JSON.parse(this.responseText);
-    buildPlayerTwo(loadPlayerTwo);
-}
-
 function executeOnLoad() {
-    const loadPlayerOne = JSON.parse(this.responseText);
-    buildPlayerOne(loadPlayerOne);
+    playerData.push(JSON.parse(this.responseText));
+    console.log('this is the player Data', playerData);
+    buildPlayerOne(playerData);
+    buildPlayerTwo(playerData);
+    if (playerData.length === 2) {
+        evaluatePlayers(playerData);
+    };
 }
 
 const loadPlayers = () => {
     readyPlayerOne(executeOnLoad);
-    readyPlayerTwo(executeOnLoad2);
+    readyPlayerTwo(executeOnLoad);
 }
 
 const readyPlayerOne = (successFunction) => {
