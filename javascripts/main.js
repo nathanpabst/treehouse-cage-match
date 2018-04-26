@@ -44,7 +44,8 @@ const buildAchievementsDomString = (winner) => {
     printToDom(winnerName, 'winner');
     let achievements = '';
     for (let i = 0; i < winner.badges.length; i++) { 
-        achievements += `<div class="panel panel-default">`;
+        achievements += `<div class="col-sm-3">`;
+        achievements += `<div class="panel">`;
         achievements +=   `<div class="panel-heading">`;
         achievements +=   `<h3 class="panel-title">Achievements</h3>`;
         achievements +=   `</div>`;
@@ -52,6 +53,10 @@ const buildAchievementsDomString = (winner) => {
         achievements +=   `<h4 class="award-name">${winner.badges[i].name}"</h4>`;
         achievements +=   `<img class="award-icon" src="${winner.badges[i].icon_url}">`;
         achievements +=   `</div>`;
+        achievements +=   `</div>`;
+        achievements +=   `</div>`;
+        achievements +=   `</div>`;
+
     };
     printToDom(achievements, 'achievements');
 };
