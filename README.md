@@ -2,10 +2,11 @@
 
 ## Description
 This application serves the need of friendly competition among pals. When the site visitor adds two team treehouse user names and clicks the 'rumble' button, the following events happen:
-- profile pics appear
-- total number of points for each user is displayed
-- winner is declared 
-- treehouse badges/achievements are displayed. 
+- both profile pics, if applicapable, will appear
+- the total number of points for each user is displayed
+- a winner is declared 
+- the winners badges/achievements are displayed. 
+
 Concepts covered: Bootstrap, ES6, JSON, XHR calls, and event-listeners.
 
 ## Screenshots
