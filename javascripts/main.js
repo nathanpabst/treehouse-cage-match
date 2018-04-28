@@ -1,37 +1,13 @@
+// STRETCH GOALS: 
+// -USE KEYPRESS INSTEAD OF A BUTTON AND/OR HIDE THE RUMBLE BUTTON ON USER CLICK
+// -CLEAR INPUT BOXES ON CLICK OR KEYPRESS
+// -CHOOSE A BACKGROUND IMG 
+// -ADD A CAROUSEL FOR THE AWARDS WITH DIRECTION ARROWS
+
 const playerData = [];
 
 const printToDom = (domString, divId) => {
     document.getElementById(divId).innerHTML = domString;
-};
-
-const buildPlayerOne = (playerData) => {
-    if (playerData[1]) {
-        let domString = "";
-    domString += `<div id="comp-one" class="col-sm-6">`;
-    domString +=    `<div class="panel">`;
-    domString +=        `<div class="competitors">`;
-    domString +=            `<h2 id="comp-one-name" class="panel-title">${playerData[1].profile_name}</h2>`;
-    domString +=            `<img class="avatar" src="${playerData[1].gravatar_url}" alt="profile-pic">`;
-    domString +=            `<h3>Total Points: <span id="comp-one-points">${playerData[1]['points'].total}</span></h3>`;
-    domString +=        `</div>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
-    printToDom(domString, "display-one");
-    }
-};
-
-const buildPlayerTwo = (playerData) => {
-    let domString = "";
-    domString += `<div id="comp-two" class="col-sm-6">`;
-    domString +=    `<div class="panel">`;
-    domString +=        `<div class="competitors">`;
-    domString +=            `<h2 id="comp-two-name"class="panel-title">${playerData[0].profile_name}</h2>`;
-    domString +=            `<img class="avatar" src="${playerData[0].gravatar_url}" alt="profile-pic">`;
-    domString +=            `<h3>Total Points: <span id="comp-two-points">${playerData[0]['points'].total}</span></h3>`;
-    domString +=        `</div>`;
-    domString +=    `</div>`;
-    domString += `</div>`;
-    printToDom(domString, "display-two");
 };
 
 // DISPLAY THE WINNERS AWARD ICONS
@@ -67,17 +43,38 @@ const evaluatePlayers = (playerData) => {
     buildAchievementsDomString(winner);
 };
 
-const addRumbleListener = () => {
-    const rumbleButton = document.getElementById('start-match');
-    rumbleButton.addEventListener('click', evaluatePlayers);
+// BUILD PLAYER CARDS
+const buildPlayerOne = (playerData) => {
+    if (playerData[1]) {
+        let domString = "";
+    domString += `<div id="comp-one" class="col-sm-6">`;
+    domString +=    `<div class="panel">`;
+    domString +=        `<div class="competitors">`;
+    domString +=            `<h2 id="comp-one-name" class="panel-title">${playerData[1].profile_name}</h2>`;
+    domString +=            `<img class="avatar" src="${playerData[1].gravatar_url}" alt="profile-pic">`;
+    domString +=            `<h3>Total Points: <span id="comp-one-points">${playerData[1]['points'].total}</span></h3>`;
+    domString +=        `</div>`;
+    domString +=    `</div>`;
+    domString += `</div>`;
+    printToDom(domString, "display-one");
+    }
 };
 
-// WHEN THE USER CLICKS THE 'GO' BUTTON, TAKE THE VALUES AND SEARCH TREEHOUSE 
-const addEventListeners = () => {
-    const goButton = document.getElementById('go');
-    goButton.addEventListener('click', loadPlayers); 
+const buildPlayerTwo = (playerData) => {
+    let domString = "";
+    domString += `<div id="comp-two" class="col-sm-6">`;
+    domString +=    `<div class="panel">`;
+    domString +=        `<div class="competitors">`;
+    domString +=            `<h2 id="comp-two-name"class="panel-title">${playerData[0].profile_name}</h2>`;
+    domString +=            `<img class="avatar" src="${playerData[0].gravatar_url}" alt="profile-pic">`;
+    domString +=            `<h3>Total Points: <span id="comp-two-points">${playerData[0]['points'].total}</span></h3>`;
+    domString +=        `</div>`;
+    domString +=    `</div>`;
+    domString += `</div>`;
+    printToDom(domString, "display-two");
 };
 
+// XHR CALLS
 function executeThisCodeIfXHRFails() {
     console.log("Oops! Something went wrong");
 }
@@ -89,11 +86,6 @@ function executeOnLoad() {
     if (playerData.length === 2) {
         evaluatePlayers(playerData);
     };
-}
-
-const loadPlayers = () => {
-    readyPlayerOne(executeOnLoad);
-    readyPlayerTwo(executeOnLoad);
 }
 
 const readyPlayerOne = (successFunction) => {
@@ -113,10 +105,21 @@ const readyPlayerTwo = (successFunction) => {
     myRequest.open("GET", `https://teamtreehouse.com/${playerTwo}.json`);
     myRequest.send();
 }; 
- 
+
+const loadPlayers = () => {
+    readyPlayerOne(executeOnLoad);
+    readyPlayerTwo(executeOnLoad);
+};
+
+// EVENT LISTENERS 
+const addEventListeners = () => {
+    const goButton = document.getElementById('go');
+    goButton.addEventListener('click', loadPlayers); 
+};
+
+// INITIALIZE APPLICATION
 const startApplication = () => {
     addEventListeners();
-    addRumbleListener();
 };
 
 startApplication();
