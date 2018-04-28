@@ -1,3 +1,4 @@
+/* MAIN STYLES */
 body {
     background-color: #576366;
     font-family: Helvetica, Arial, sans-serif;
@@ -6,29 +7,23 @@ body {
 h1 {
     color: #5fcf80;
     text-align: center;
-    font-size: 30px;
-}
-h2 {
-    font-size: 45px;
-    text-align: center;
-    color: #c25975;
-    width: 50%;
-    margin: auto;
-    background-color: #5fcf80;
-    padding: 5px;
+    font-size: 50px;
 }
 h3 {
     font-size: 24px;
     color: white;
 }
 
+/* INPUT BOXES & GO BUTTON */
 .input-group {
     margin: 0 auto;
 }
-.panel-heading {
-    width: 350px;
+.input-group-btn {
+    padding: 20px;
+    text-align: center;
 }
 
+/* COMPETITOR DISPLAY PANELS */
 .panel {
     background-color: #5fcf80;
     width: 350px;
@@ -40,50 +35,44 @@ h3 {
     border-radius: 10%;
 }
 .panel-title {
-    margin-top: 0;
+    margin-top: 1px;        
     margin-bottom: 0;
     font-size: 24px;
-    color: #c25975;
+    color: white;
 }
 
+/* RUMBLE BUTTON */
+.rumble-btn {
+    padding: 25px;
+    text-align: center;
+}
+
+/* WINNER DIV STYLES */
+#winner {
+    padding: 25px;
+    margin: 5px;
+}
+h2 {
+    font-size: 45px;
+    text-align: center;
+    color: white;
+    width: 50%;
+    margin: auto;
+    background-color: #5fcf80;
+    padding: 5px;
+}
+
+/* BADGE PANEL STYLES */
 .badge-panel {
     width: 250px;
     margin: 0 auto;
     text-align: center;
 }
-
-.competitors {
+.awards-section {
+    padding: 3px;
 }
-
-
-/* 
-.btn {
-    margin: 0 auto;
-} */
-#player-one, #player-two {
-    display: inline;
-}
-.userOne {
- border:  #c25975 5px solid;
-}
-
-.userTwo {
-    border: #c25975 5px solid;
-    border-radius: 100%;
-}
-#input {
-    margin: auto;
-}
-#next {
-    margin: auto; 
-}
-#rumble {
-    margin: auto;
-}
-
 .award-name {
     color: white;
-
 }
 .award-icon {
     width: 150px;
