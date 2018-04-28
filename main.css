@@ -8,20 +8,63 @@ h1 {
     text-align: center;
     font-size: 30px;
 }
+h2 {
+    font-size: 45px;
+    text-align: center;
+    color: #c25975;
+    width: 50%;
+    margin: auto;
+    background-color: #5fcf80;
+    padding: 5px;
+}
+h3 {
+    font-size: 24px;
+    color: white;
+}
 
 .input-group {
     margin: 0 auto;
 }
+.panel-heading {
+    width: 350px;
+}
 
-.btn {
+.panel {
+    background-color: #5fcf80;
+    width: 350px;
+    height: 400px;
     margin: 0 auto;
 }
-#display-one #display-two {
+.avatar {
+    width: 90%;
+    border-radius: 10%;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 24px;
+    color: #c25975;
+}
+
+.badge-panel {
+    width: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.competitors {
+}
+
+
+/* 
+.btn {
+    margin: 0 auto;
+} */
+#player-one, #player-two {
     display: inline;
 }
 .userOne {
  border:  #c25975 5px solid;
- border-radius: 100%;
 }
 
 .userTwo {
@@ -38,15 +81,8 @@ h1 {
     margin: auto;
 }
 
-.avatar {
-    width: 90%;
-    height: 90%;
-}
-.panel {
-    background-color: #5fcf80;
-}
-
 .award-name {
+    color: white;
 
 }
 .award-icon {
