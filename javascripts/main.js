@@ -8,33 +8,29 @@ const buildPlayerOne = (playerData) => {
     if (playerData[1]) {
         let domString = "";
     domString += `<div id="comp-one" class="col-sm-6">`;
-    domString += `<div class="panel">`;
-    domString +=  `<div class="panel-heading">`;
-    domString +=  `<div class="competitors">`;
-    domString +=    `<h2 id="comp-one-name" class="panel-title">${playerData[1].profile_name}</h2>`;
-    domString +=    `<img class="avatar" src="${playerData[1].gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: <span id="comp-one-points">${playerData[1]['points'].total}</span></h3>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
+    domString +=    `<div class="panel">`;
+    domString +=        `<div class="competitors">`;
+    domString +=            `<h2 id="comp-one-name" class="panel-title">${playerData[1].profile_name}</h2>`;
+    domString +=            `<img class="avatar" src="${playerData[1].gravatar_url}" alt="profile-pic">`;
+    domString +=            `<h3>Total Points: <span id="comp-one-points">${playerData[1]['points'].total}</span></h3>`;
+    domString +=        `</div>`;
+    domString +=    `</div>`;
+    domString += `</div>`;
     printToDom(domString, "display-one");
     }
 };
 
 const buildPlayerTwo = (playerData) => {
     let domString = "";
-    domString += `<div class="col-sm-6">`;
-    domString += `<div class="panel">`;
-    domString +=  `<div class="panel-heading">`;
-    domString +=  `<div class="competitors">`;
-    domString +=    `<h2 id="comp-two-name"class="panel-title">${playerData[0].profile_name}</h2>`;
-    domString +=    `<img class="avatar" src="${playerData[0].gravatar_url}" alt="profile-pic">`;
-    domString +=    `<h3>Total Points: <span id="comp-two-points">${playerData[0]['points'].total}</span></h3>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
-    domString +=  `</div>`;
+    domString += `<div id="comp-two" class="col-sm-6">`;
+    domString +=    `<div class="panel">`;
+    domString +=        `<div class="competitors">`;
+    domString +=            `<h2 id="comp-two-name"class="panel-title">${playerData[0].profile_name}</h2>`;
+    domString +=            `<img class="avatar" src="${playerData[0].gravatar_url}" alt="profile-pic">`;
+    domString +=            `<h3>Total Points: <span id="comp-two-points">${playerData[0]['points'].total}</span></h3>`;
+    domString +=        `</div>`;
+    domString +=    `</div>`;
+    domString += `</div>`;
     printToDom(domString, "display-two");
 };
 
@@ -44,14 +40,14 @@ const buildAchievementsDomString = (winner) => {
     printToDom(winnerName, 'winner');
     let achievements = '';
     for (let i = 0; i < winner.badges.length; i++) { 
-        achievements += `<div class="panel panel-default">`;
-        achievements +=   `<div class="panel-heading">`;
-        achievements +=   `<h3 class="panel-title">Achievements</h3>`;
-        achievements +=   `</div>`;
-        achievements +=   `<div class="awards-section">`;
-        achievements +=   `<h4 class="award-name">${winner.badges[i].name}"</h4>`;
-        achievements +=   `<img class="award-icon" src="${winner.badges[i].icon_url}">`;
-        achievements +=   `</div>`;
+        achievements += `<div class="col-sm-3">`;
+        achievements +=     `<div class="badge-panel">`;
+        achievements +=         `<div class="awards-section">`;
+        achievements +=             `<h4 class="award-name">${winner.badges[i].name}</h4>`;
+        achievements +=             `<img class="award-icon center" src="${winner.badges[i].icon_url}">`;
+        achievements +=         `</div>`;
+        achievements +=     `</div>`;
+        achievements +=  `</div>`;
     };
     printToDom(achievements, 'achievements');
 };
@@ -65,7 +61,6 @@ const evaluatePlayers = (playerData) => {
     let winner;
     if (comp1Parsed > comp2Parsed) {
        winner = playerData[1];
-       console.log('winner', winner);
     } else {
         winner = playerData[0];
     }
@@ -89,7 +84,6 @@ function executeThisCodeIfXHRFails() {
 
 function executeOnLoad() {
     playerData.push(JSON.parse(this.responseText));
-    console.log('this is the player Data', playerData);
     buildPlayerOne(playerData);
     buildPlayerTwo(playerData);
     if (playerData.length === 2) {
